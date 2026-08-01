@@ -162,7 +162,7 @@ def seed_db():
     
     # Create default users
     users_data = [
-        {"username": "hod", "password": "password123", "role": "HOD", "assigned_year": None},
+        {"username": "hod", "password": "hod", "role": "HOD", "assigned_year": None},
         {"username": "Naren", "password": "Narenguru", "role": "HOD", "assigned_year": None},
         {"username": "staff1", "password": "password123", "role": "Staff", "assigned_year": None},
         {"username": "Gracsy Jennifer", "password": "212625205010", "role": "Rep", "assigned_year": "2nd_year"},
