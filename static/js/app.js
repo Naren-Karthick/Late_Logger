@@ -32,7 +32,9 @@ const UI = {
     btnExport: document.getElementById('btn-export'),
     filterDate: document.getElementById('filter-date'),
     filterYear: document.getElementById('filter-year'),
-    statsContainer: document.getElementById('stats-container')
+    statsContainer: document.getElementById('stats-container'),
+    statsTableBody: document.querySelector('#stats-table tbody'),
+    studentStatsContainer: document.getElementById('student-stats-container')
 };
 
 // Utils
@@ -320,18 +322,38 @@ async function loadDashboard() {
             });
         }
         
-        // Render Stats (Simple version)
-        if (!filters.date && !filters.year) { // Only show general stats when not heavily filtered
-            UI.statsContainer.innerHTML = `
-                <div class="stat-card glass">
-                    <h3>${logs.length}</h3>
-                    <p>Total Lates (Filtered)</p>
-                </div>
-                <div class="stat-card glass">
-                    <h3>${stats.length}</h3>
-                    <p>Unique Students Late (30 days)</p>
-                </div>
-            `;
+        // Render General Stats
+        UI.statsContainer.innerHTML = `
+            <div class="stat-card glass">
+                <h3>${logs.length}</h3>
+                <p>Total Lates (Filtered)</p>
+            </div>
+            <div class="stat-card glass">
+                <h3>${stats.length}</h3>
+                <p>Unique Students Late (30 days)</p>
+            </div>
+        `;
+
+        // Render Student Statistics Table
+        UI.statsTableBody.innerHTML = '';
+        if (stats.length === 0) {
+            UI.statsTableBody.innerHTML = '<tr><td colspan="7" style="text-align:center">No students late in the last 30 days</td></tr>';
+        } else {
+            // Sort stats by total count descending
+            stats.sort((a, b) => b.late_count - a.late_count);
+            stats.forEach(stat => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${stat.register_no}</td>
+                    <td>${stat.name}</td>
+                    <td>${stat.year ? stat.year.replace('_', ' ') : ''}</td>
+                    <td>${stat.morning_count}</td>
+                    <td>${stat.after_break_count}</td>
+                    <td>${stat.after_lunch_count}</td>
+                    <td><strong>${stat.late_count}</strong></td>
+                `;
+                UI.statsTableBody.appendChild(tr);
+            });
         }
         
     } catch (err) {
