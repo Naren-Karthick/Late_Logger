@@ -279,7 +279,7 @@ async function loadDashboard() {
         };
         const [logs, stats] = await Promise.all([
             api.getLogs(filters),
-            api.getStats()
+            api.getStats(filters)
         ]);
         
         // Render Logs
