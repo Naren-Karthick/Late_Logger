@@ -224,7 +224,9 @@ def export_csv(current_user, db):
 @app.route('/stats', methods=['GET'])
 @token_required
 def get_stats(current_user, db):
-    thirty_days_ago = datetime.utcnow().date() - timedelta(days=30)
+    year = request.args.get('year')
+    date_str = request.args.get('date')
+    
     query = db.query(
         models.Student.id,
         models.Student.register_no,
@@ -234,10 +236,19 @@ def get_stats(current_user, db):
         func.sum(case((models.LateLog.session == 'Morning', 1), else_=0)).label('morning_count'),
         func.sum(case((models.LateLog.session == 'After Break', 1), else_=0)).label('after_break_count'),
         func.sum(case((models.LateLog.session == 'After Lunch', 1), else_=0)).label('after_lunch_count')
-    ).join(models.Student).filter(models.LateLog.date >= thirty_days_ago)
+    ).join(models.Student)
     
+    if date_str:
+        date_obj = datetime.strptime(date_str, '%Y-%m-%d').date()
+        query = query.filter(models.LateLog.date == date_obj)
+    else:
+        thirty_days_ago = datetime.utcnow().date() - timedelta(days=30)
+        query = query.filter(models.LateLog.date >= thirty_days_ago)
+        
     if current_user.role == 'Rep':
         query = query.filter(models.Student.year == current_user.assigned_year)
+    elif year:
+        query = query.filter(models.Student.year == year)
         
     stats = query.group_by(models.Student.id, models.Student.register_no, models.Student.name, models.Student.year).all()
     
