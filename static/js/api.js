@@ -102,8 +102,12 @@ class ApiService {
         return this.request(`/logs?${params.toString()}`);
     }
 
-    async getStats() {
-        return this.request('/stats');
+    async getStats(filters = {}) {
+        const params = new URLSearchParams();
+        if (filters.date) params.append('date', filters.date);
+        if (filters.year) params.append('year', filters.year);
+        
+        return this.request(`/stats?${params.toString()}`);
     }
 
     async exportCsv(filters = {}) {
