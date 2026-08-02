@@ -6,7 +6,7 @@ import os
 import csv
 import io
 from sqlalchemy.orm import Session
-from sqlalchemy import func
+from sqlalchemy import func, case
 
 from . import models
 from .database import engine, get_db
@@ -225,13 +225,32 @@ def export_csv(current_user, db):
 @token_required
 def get_stats(current_user, db):
     thirty_days_ago = datetime.utcnow().date() - timedelta(days=30)
-    query = db.query(models.LateLog.student_id, func.count(models.LateLog.id).label('late_count')).filter(models.LateLog.date >= thirty_days_ago)
+    query = db.query(
+        models.Student.id,
+        models.Student.register_no,
+        models.Student.name,
+        models.Student.year,
+        func.count(models.LateLog.id).label('late_count'),
+        func.sum(case((models.LateLog.session == 'Morning', 1), else_=0)).label('morning_count'),
+        func.sum(case((models.LateLog.session == 'After Break', 1), else_=0)).label('after_break_count'),
+        func.sum(case((models.LateLog.session == 'After Lunch', 1), else_=0)).label('after_lunch_count')
+    ).join(models.Student).filter(models.LateLog.date >= thirty_days_ago)
     
     if current_user.role == 'Rep':
-        query = query.join(models.Student).filter(models.Student.year == current_user.assigned_year)
+        query = query.filter(models.Student.year == current_user.assigned_year)
         
-    stats = query.group_by(models.LateLog.student_id).all()
-    return jsonify([{"student_id": stat[0], "late_count": stat[1]} for stat in stats])
+    stats = query.group_by(models.Student.id, models.Student.register_no, models.Student.name, models.Student.year).all()
+    
+    return jsonify([{
+        "student_id": stat[0],
+        "register_no": stat[1],
+        "name": stat[2],
+        "year": stat[3],
+        "late_count": stat[4],
+        "morning_count": stat[5] or 0,
+        "after_break_count": stat[6] or 0,
+        "after_lunch_count": stat[7] or 0
+    } for stat in stats])
 
 @app.route('/logs/<int:log_id>', methods=['DELETE'])
 @token_required
