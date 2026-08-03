@@ -78,7 +78,8 @@ student_data_json = """
         { "s_no": 54, "register_no": "212625205058", "name": "Roobini Dj" },
         { "s_no": 55, "register_no": "N/A1", "name": "Abinaya L" },
         { "s_no": 56, "register_no": "N/A2", "name": "Vignesh S" },
-        { "s_no": 57, "register_no": "N/A3", "name": "Vinodhini A" }
+        { "s_no": 57, "register_no": "N/A3", "name": "Vinodhini A" },
+        { "s_no": 58, "register_no": "N/A4", "name": "Madhan Kumar Y"}
       ]
     },
     "3rd_year": {
