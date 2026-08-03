@@ -175,6 +175,8 @@ def seed_db():
         {"username": "Mohan", "password": "212624205014", "role": "Rep", "assigned_year": "3rd_year"},
         {"username": "Divya", "password": "212624205004", "role": "Rep", "assigned_year": "3rd_year"},
         {"username": "Blessy", "password": "212623205006", "role": "Rep", "assigned_year": "4th_year"},
+        {"username": "Vanjinathan", "password": "212623205038", "role": "Rep", "assigned_year": "4th_year"}
+      
     ]
     
     for u in users_data:
