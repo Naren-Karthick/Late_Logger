@@ -76,9 +76,9 @@ student_data_json = """
         { "s_no": 52, "register_no": "212625205056", "name": "Vetriganesh G" },
         { "s_no": 53, "register_no": "212625205057", "name": "Vishal K" },
         { "s_no": 54, "register_no": "212625205058", "name": "Roobini Dj" },
-        { "s_no": 55, "register_no": "N/A1", "name": "Abhinaya" },
-        { "s_no": 56, "register_no": "N/A2", "name": "Vignesh" },
-        { "s_no": 57, "register_no": "N/A3", "name": "Vinothini" }
+        { "s_no": 55, "register_no": "N/A1", "name": "Abinaya L" },
+        { "s_no": 56, "register_no": "N/A2", "name": "Vignesh S" },
+        { "s_no": 57, "register_no": "N/A3", "name": "Vinodhini A" }
       ]
     },
     "3rd_year": {
@@ -94,7 +94,7 @@ student_data_json = """
         { "s_no": 7, "register_no": "212624205007", "name": "Gokulraja M" },
         { "s_no": 8, "register_no": "212624205008", "name": "Harithra A" },
         { "s_no": 9, "register_no": "212624205009", "name": "Jayashree" },
-        { "s_no": 10, "register_no": "212624205010", "name": "Jetson G" },
+        { "s_no": 10, "register_no": "212624205010", "nampasswordenniferenniferracsy": "Jetson G" },
         { "s_no": 11, "register_no": "212624205011", "name": "Kaarki Che P S" },
         { "s_no": 12, "register_no": "212624205012", "name": "Madhusri J V" },
         { "s_no": 13, "register_no": "212624205013", "name": "Manikandan R" },
@@ -170,7 +170,7 @@ def seed_db():
         {"username": "hod", "password": "hod", "role": "HOD", "assigned_year": None},
         {"username": "Naren", "password": "Narenguru", "role": "HOD", "assigned_year": None},
         {"username": "staff1", "password": "password123", "role": "Staff", "assigned_year": None},
-        {"username": "Gracsy Jennifer", "password": "212625205010", "role": "Rep", "assigned_year": "2nd_year"},
+        {"username": "Grascy Jennifer", "password": "212625205010", "role": "Rep", "assigned_year": "2nd_year"},
         {"username": "Mohan", "password": "212624205014", "role": "Rep", "assigned_year": "3rd_year"},
         {"username": "Divya", "password": "212624205004", "role": "Rep", "assigned_year": "3rd_year"},
         {"username": "Blessy", "password": "212623205006", "role": "Rep", "assigned_year": "4th_year"},
