@@ -169,13 +169,13 @@ def seed_db():
     # Create default users
     users_data = [
         {"username": "hod", "password": "hod", "role": "HOD", "assigned_year": None},
-        {"username": "Naren", "password": "Narenguru", "role": "HOD", "assigned_year": None},
-        {"username": "staff1", "password": "password123", "role": "Staff", "assigned_year": None},
-        {"username": "Grascy Jennifer", "password": "212625205010", "role": "Rep", "assigned_year": "2nd_year"},
-        {"username": "Mohan", "password": "212624205014", "role": "Rep", "assigned_year": "3rd_year"},
-        {"username": "Divya", "password": "212624205004", "role": "Rep", "assigned_year": "3rd_year"},
-        {"username": "Blessy", "password": "212623205006", "role": "Rep", "assigned_year": "4th_year"},
-        {"username": "Vanjinathan", "password": "212623205038", "role": "Rep", "assigned_year": "4th_year"}
+        {"username": "Admin", "password": "Narenguru", "role": "HOD", "assigned_year": None},
+        {"username": "Naren Karthick G", "password": "212625205029", "role": "Rep", "assigned_year": "2nd_year"},
+        {"username": "Grascy Jennifer J R", "password": "212625205010", "role": "Rep", "assigned_year": "2nd_year"},
+        {"username": "Mohan Raj P", "password": "212624205014", "role": "Rep", "assigned_year": "3rd_year"},
+        {"username": "Divya Priya K", "password": "212624205004", "role": "Rep", "assigned_year": "3rd_year"},
+        {"username": "Blessi V", "password": "212623205006", "role": "Rep", "assigned_year": "4th_year"},
+        {"username": "Vanjinathan L", "password": "212623205038", "role": "Rep", "assigned_year": "4th_year"}
       
     ]
     
